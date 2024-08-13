@@ -14,31 +14,19 @@ public class Util {
 
     private static Connection connection = null;
 
-public static Connection getConnection() {
-    if (connection == null) {
-        try {
-            Class.forName(DB_Driver).getDeclaredConstructor().newInstance();
-            connection = DriverManager.getConnection(DB_URL, USER, PWD);
-            System.out.println("Успешное соединение с БД");
-        } catch (ClassNotFoundException | InstantiationException |
-                 IllegalAccessException | NoSuchMethodException | SQLException e) {
-            System.out.println("Ошибка при установке соединения с БД: " + e.getMessage());
-        } catch (InvocationTargetException e) {
-            System.out.println("Ошибка при создании драйвера: " + e.getCause().getMessage());
-        }
-    }
-    return connection;
-}
-        public static void closeConnection() {
-        try {
-            if (connection != null) {
-                connection.close();
-                System.out.println("Соединение закрыто");
-            } else {
-                System.out.println("Соединение не было установлено");
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
+                Class.forName(DB_Driver).getDeclaredConstructor().newInstance();
+                connection = DriverManager.getConnection(DB_URL, USER, PWD);
+                System.out.println("Успешное соединение с БД");
+            } catch (ClassNotFoundException | InstantiationException |
+                     IllegalAccessException | NoSuchMethodException | SQLException e) {
+                System.out.println("Ошибка при установке соединения с БД: " + e.getMessage());
+            } catch (InvocationTargetException e) {
+                System.out.println("Ошибка при создании драйвера: " + e.getCause().getMessage());
             }
-        } catch (SQLException e) {
-            System.out.println("Ошибка при закрытии соединения");
         }
+        return connection;
     }
 }

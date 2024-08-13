@@ -61,7 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    // Удаление User из таблицы (по id) +
+    // Удаление User из таблицы (по id)
     public void removeUserById(long id) {
         String sql = "DELETE FROM Users WHERE Id=?;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
